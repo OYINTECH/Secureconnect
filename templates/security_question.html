@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Security Question{% endblock %}
+
+{% block content %}
+<h2 class="text-center mt-4">🔐 Final Step: Security Question</h2>
+<p class="text-center text-muted">Answer the question set by the developer</p>
+
+<form method="POST" class="mt-4" style="max-width: 400px; margin: auto;">
+    <div class="mb-3">
+        <label for="answer" class="form-label">What is your favorite color?</label>
+        <input type="text" name="answer" id="answer" class="form-control" placeholder="Enter your answer" required>
+    </div>
+
+    <button type="submit" class="btn btn-success w-100">Unlock Access</button>
+</form>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Emoji Pattern Unlock{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h2 class="mb-4">🔒 Unlock SecureConnect</h2>
+    <p class="lead">Enter your secret emoji pattern</p>
+
+    <!-- Display for pattern -->
+    <div id="patternDisplay" class="mb-3">
+        <span id="patternText" class="badge bg-dark fs-5"></span>
+    </div>
+
+    <!-- Emoji Grid -->
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="row g-2">
+                {% set emojis = ["😀", "😎", "😡", "😂", "🤖", "👽", "😱", "😍", "👻"] %}
+                {% for i in range(0, 9, 3) %}
+                <div class="d-flex justify-content-around">
+                    {% for j in range(3) %}
+                    <button class="btn btn-outline-secondary emoji-btn fs-2" data-value="{{ emojis[i+j] }}">{{ emojis[i+j] }}</button>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden form to submit pattern -->
+    <form method="POST" action="{{ url_for('typing_rhythm') }}">
+        <input type="hidden" name="pattern" id="emojiPattern">
+        <button type="submit" class="btn btn-primary mt-4" id="submitBtn" disabled>Continue</button>
+    </form>
+</div>
+
+<script>
+    const pattern = [];
+    const maxLength = 4;  // required length
+    const emojiPatternInput = document.getElementById('emojiPattern');
+    const submitBtn = document.getElementById('submitBtn');
+    const patternText = document.getElementById('patternText');
+
+    document.querySelectorAll('.emoji-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (pattern.length < maxLength) {
+                pattern.push(btn.dataset.value);
+                patternText.innerText = pattern.join(' ');
+                emojiPatternInput.value = pattern.join('');
+            }
+            if (pattern.length === maxLength) {
+                submitBtn.disabled = false;
+            }
+        });
+    });
+</script>
+{% endblock %}

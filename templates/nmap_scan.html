@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Nmap Port Scanner{% endblock %}
+{% block content %}
+<h2 class="mb-4">Nmap Port Scanner</h2>
+
+<form method="POST">
+    <div class="mb-3">
+        <label for="target" class="form-label">Target IP or Domain</label>
+        <input type="text" class="form-control" name="target" placeholder="e.g. 192.168.1.1 or example.com" required>
+    </div>
+    <button type="submit" class="btn btn-warning">Scan Now</button>
+</form>
+
+{% if results %}
+    <div class="mt-5">
+        <h4>Scan Results for: <span class="text-primary">{{ target }}</span></h4>
+        <table class="table table-bordered mt-3">
+            <thead class="table-light">
+                <tr>
+                    <th>Host</th>
+                    <th>Protocol</th>
+                    <th>Port</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in results %}
+                    <tr>
+                        <td>{{ entry.host }}</td>
+                        <td>{{ entry.protocol }}</td>
+                        <td>{{ entry.port }}</td>
+                        <td>{{ entry.state }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('download_scan_results') }}" class="btn btn-success mt-3">Download CSV</a>
+    </div>
+{% endif %}
+{% endblock %}

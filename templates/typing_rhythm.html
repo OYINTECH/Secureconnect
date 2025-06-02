@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Typing Rhythm Challenge{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Typing Rhythm Challenge</h2>
+<p>Type the word <strong>"secureconnect"</strong> as naturally as possible. We’ll measure your typing pattern.</p>
+
+<form method="POST" onsubmit="captureTimings()">
+    <div class="mb-3">
+        <input type="text" id="typingInput" name="typed" class="form-control" required autofocus>
+        <input type="hidden" name="timings" id="timings">
+    </div>
+    <button type="submit" class="btn btn-primary">Verify</button>
+</form>
+
+<script>
+let timings = [];
+let lastTime = null;
+
+document.getElementById('typingInput').addEventListener('keydown', function(e) {
+    const now = new Date().getTime();
+    if (lastTime !== null) {
+        timings.push(now - lastTime);
+    }
+    lastTime = now;
+});
+
+function captureTimings() {
+    document.getElementById('timings').value = JSON.stringify(timings);
+}
+</script>
+{% endblock %}

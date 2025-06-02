@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Reveal Message{% endblock %}
+{% block content %}
+<h2>Reveal Hidden Message from Image</h2>
+<form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="image" class="form-label">Upload PNG Image</label>
+        <input type="file" class="form-control" name="image" required>
+    </div>
+    <button type="submit" class="btn btn-info">Reveal Message</button>
+</form>
+
+{% if hidden_message %}
+<div class="mt-4 alert alert-success">
+    <strong>Hidden Message:</strong>
+    <p>{{ hidden_message }}</p>
+</div>
+{% endif %}
+{% endblock %}
+

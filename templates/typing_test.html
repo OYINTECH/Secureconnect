@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Typing Rhythm Test{% endblock %}
+
+{% block content %}
+<h2 class="text-center mt-4">⌨️ Typing Rhythm Test</h2>
+<p class="text-center text-muted">Select the typing style that matches your rhythm</p>
+
+<form method="POST" class="text-center mt-4">
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="speed" id="slow" value="slow" required>
+        <label class="form-check-label" for="slow">🐢 Slow</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="speed" id="normal" value="normal">
+        <label class="form-check-label" for="normal">🙂 Normal</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="speed" id="fast" value="fast">
+        <label class="form-check-label" for="fast">⚡ Fast</label>
+    </div>
+
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary">Continue</button>
+    </div>
+</form>
+{% endblock %}

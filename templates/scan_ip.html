@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Website IP Scanner{% endblock %}
+{% block content %}
+<h2>Website IP Scanner</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label for="domain" class="form-label">Enter Website Domain</label>
+        <input type="text" class="form-control" name="domain" placeholder="e.g. google.com" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Get IP Address</button>
+</form>
+
+{% if ip_result %}
+    <div class="alert alert-success mt-3">
+        <strong>IP Address:</strong> {{ ip_result }}
+    </div>
+{% endif %}
+{% endblock %}
